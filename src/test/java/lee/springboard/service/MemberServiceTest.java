@@ -11,13 +11,17 @@ import java.util.Optional;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
+/*테스트 실행시 given when then으로 나누면 훨씬 확인하기가 편함*/
+
 class MemberServiceTest {
 
+    //객체 선언
     MemberService memberService;
     MemoryMemberRepository memberRepository;
 //
 //     MemoryMemberRepository memberRepository = new MemoryMemberRepository();
 
+    // 실행 전 생성자를 이용한 객체 생성
     @BeforeEach
     public void beforeEach(){
         memberRepository = new MemoryMemberRepository();
