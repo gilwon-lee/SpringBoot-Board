@@ -20,7 +20,7 @@ public class MemoryMemberRepository implements MemberRepository {
     public Optional<Member> findById(Long id) {
         return Optional.ofNullable(store.get(id));
     }
-
+//234
     @Override
     public Optional<Member> findByName(String name) {
         return store.values().stream()
