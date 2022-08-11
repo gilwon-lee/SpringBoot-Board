@@ -1,37 +1,31 @@
 package lee.springboard.service;
 
 import lee.springboard.domain.Member;
-import lee.springboard.repository.MemoryMemberRepository;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
+import lee.springboard.repository.MemberRepository;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-/*테스트 실행시 given when then으로 나누면 훨씬 확인하기가 편함*/
-
-class MemberServiceTest {
+//스프링 부트 테스트 ->스프링 컨테이너와 함께 테스트
+@SpringBootTest
+//테스트가 끝난 후 롤백을 해줌 
+//before case가 필요 없음
+@Transactional
+class MemberServiceIntegrationTest {
 
     //객체 선언
+    @Autowired
     MemberService memberService;
-    MemoryMemberRepository memberRepository;
+    @Autowired
+    MemberRepository memberRepository;
 //
 //     MemoryMemberRepository memberRepository = new MemoryMemberRepository();
-
-    // 실행 전 생성자를 이용한 객체 생성
-    @BeforeEach
-    public void beforeEach(){
-        memberRepository = new MemoryMemberRepository();
-        memberService = new MemberService(memberRepository);
-    }
-
-    @AfterEach
-    public void afterEach(){
-        memberRepository.clearStore();
-    }
 
     @Test
     void 회원가입() {
@@ -56,9 +50,6 @@ class MemberServiceTest {
         Member member2 = new Member();
         member2.setName("spring");
 
-        /*Member member2 = new Member();
-        member2.setName("spring");*/
-
         //when
         memberService.join(member1);
         IllegalStateException e =assertThrows(IllegalStateException.class,
@@ -66,23 +57,5 @@ class MemberServiceTest {
 
         //then
         assertThat(e.getMessage()).isEqualTo("이미 존재하는 회원입니다.");
-
-
-        /*        try {
-            memberService.join(member2);
-            fail("예외가 발생해야 합니다.");
-        } catch (IllegalStateException e) {
-            throw new RuntimeException(e);
-        }*/
-
-
-    }
-
-    @Test
-    void 회원찾기() {
-    }
-
-    @Test
-    void findOne() {
     }
 }

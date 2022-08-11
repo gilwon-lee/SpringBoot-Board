@@ -3,11 +3,12 @@ package lee.springboard.service;
 import lee.springboard.domain.Member;
 import lee.springboard.repository.MemberRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
 
-
+@Transactional
 public class MemberService {
 
     private final MemberRepository memberRepository;
@@ -17,10 +18,10 @@ public class MemberService {
         this.memberRepository = memberRepository;
     }
 
+
+
     //        회원가입
     public long join(Member member){
-        //같은 이름이 있는 중복 회원
-        validateDuplicateMember(member);
         memberRepository.save(member);
         return member.getId();
     }
