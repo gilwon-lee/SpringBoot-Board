@@ -12,14 +12,15 @@ import java.util.Optional;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-//스프링 부트 테스트 ->스프링 컨테이너와 함께 테스트
 @SpringBootTest
-//테스트가 끝난 후 롤백을 해줌 
-//before case가 필요 없음
+//스프링 부트 테스트 ->스프링 컨테이너와 함께 테스트(통합 테스트)
 @Transactional
+//테스트가 끝난 후 롤백을 해줌
+//before case가 필요 없음
 class MemberServiceIntegrationTest {
 
     //객체 선언
+    //테스트에서는 다른곳에서 사용할 일이 없기 떄문에 필드 주입을 해도 괜찮다.
     @Autowired
     MemberService memberService;
     @Autowired

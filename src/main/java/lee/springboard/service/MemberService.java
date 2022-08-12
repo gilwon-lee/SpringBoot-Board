@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 import java.util.Optional;
 
+// SpringConfig에 Bean을 생성하여 @Serivce를 생략
 @Transactional
 public class MemberService {
 

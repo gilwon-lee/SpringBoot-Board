@@ -5,6 +5,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+//DB Table과 mapping
+//@Entitiy : JPA 엔티티 매핑
 @Entity
 public class Member {
     @Id

@@ -6,12 +6,15 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+//@Controller -> Annotation(Controller)
 @Controller
 public class HelloController
 {
+    //get 형식의 요청에대한 매핑
     @GetMapping("hello")
     public String hello(Model model){
         model.addAttribute("data","hello");
+        //resources/templates/hello(.html)에 매핑
         return "hello";
     }
 
